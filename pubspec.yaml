@@ -85,6 +85,17 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
+
+  fonts:
+    - family: Matter
+      fonts:
+        - asset: asset/font/Matter-Regular.ttf
+        - asset: asset/font/Matter-Bold.ttf
+        - asset: asset/font/Matter-Heavy.ttf
+        - asset: asset/font/Matter-Light.ttf
+        - asset: asset/font/Matter-Medium.ttf
+        - asset: asset/font/Matter-SemiBold.ttf
+
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
