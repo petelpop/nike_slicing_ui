@@ -198,8 +198,10 @@ class _DetailScreenState extends State<DetailScreen> {
           mainAxisSize: MainAxisSize.max,
           children: [
             IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.menu),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back_ios_new_rounded),
               iconSize: 30,
             ),
             Image.asset('asset/img/icon_2.png'),

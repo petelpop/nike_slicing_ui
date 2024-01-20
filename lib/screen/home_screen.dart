@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:submission_dicoding_1/model/item.dart';
 import 'package:submission_dicoding_1/screen/detail_screen.dart';
-
 class HomeScreen extends StatelessWidget{
   const HomeScreen({super.key});
 
