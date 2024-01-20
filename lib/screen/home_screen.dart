@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:submission_dicoding_1/model/item.dart';
+import 'package:submission_dicoding_1/screen/detail_screen.dart';
 
 class HomeScreen extends StatelessWidget{
   const HomeScreen({super.key});
@@ -8,17 +10,78 @@ class HomeScreen extends StatelessWidget{
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const SizedBox(height: 10),
             _appBar(),
             const SizedBox(height: 10),
             _hero(context),
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
+            _category(),
+            const SizedBox(height: 20),
+            GridView.count(
+              crossAxisCount: 2,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+              shrinkWrap: true,
+              
+              children: List.generate(itemList.length,
+              (index) => ItemCard(item: itemList[index])),
+            )
+        
+              //   Container(
+              //   height: 163,
+              //   width: 177,
+              //   decoration: BoxDecoration(
+              //   color: Color(0xFFEEEEEE),
+              //   borderRadius: BorderRadius.circular(12.72)
+              //   )
+              // )
             
-          ],
-        ),
+              
+          ]
+            ),
       ),
-    );
+      );
+  }
+
+  Padding _category() {
+    return const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'New Year, New You',
+                  style: TextStyle(
+                    fontFamily: 'Matter',
+                    fontSize: 17,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: -0.32
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'See All',
+                      style: TextStyle(
+                        color: Color(0xFF1235AD),
+                        fontFamily: 'Matter',
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: -0.24
+                      ),
+                    ),
+                    Icon(Icons.arrow_outward, size: 19, color: Color(0xFF1235AD))
+                  ],
+                )
+              ],
+              
+            ),
+          );
   }
 
   Stack _hero(BuildContext context) {
@@ -46,12 +109,12 @@ class HomeScreen extends StatelessWidget{
               ),
               Center(
                   child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 1),
-                  margin: EdgeInsets.symmetric(vertical: 25),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 1),
+                  margin: const EdgeInsets.symmetric(vertical: 25),
                   decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
                   color: Colors.white
-                     ),
+                      ),
                   child: TextButton(
                     onPressed: () {}, 
                     child: const Text(
@@ -117,5 +180,69 @@ class HomeScreen extends StatelessWidget{
               ),
               
             );
+  }
+}
+
+class ItemCard extends StatelessWidget {
+  final Nike item;
+
+  ItemCard({required this.item});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context){
+          return DetailScreen(item: item);
+        })
+        );
+      },
+      child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                  child: Row(
+                    children: [
+                      Card(
+                      color: Colors.white,
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: Image.asset(item.image,
+                            fit: BoxFit.cover,),
+                          ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                width: 150,
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                    Text(
+                                      item.name,
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        fontFamily: 'Matter',
+                                        fontWeight: FontWeight.w600),
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(item.price,
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontFamily: 'Matter',
+                                      fontWeight: FontWeight.w700,
+                                      color: Color(0xFF1235AD)),
+                                      )
+                                  ],
+                                ),
+                              ),
+                              )
+                        ],
+                      ),
+                    ),
+                    ],
+                  ),
+                  ),
+    );
   }
 }

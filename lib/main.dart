@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:submission_dicoding_1/model/item.dart';
+import 'package:submission_dicoding_1/screen/detail_screen.dart';
 import 'package:submission_dicoding_1/screen/splash_screen.dart';
 
 void main() {
