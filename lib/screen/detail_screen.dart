@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:submission_dicoding_1/model/item.dart';
 
 class DetailScreen extends StatefulWidget {
