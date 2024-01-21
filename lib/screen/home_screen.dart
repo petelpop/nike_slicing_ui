@@ -24,6 +24,7 @@ class HomeScreen extends StatelessWidget{
               crossAxisSpacing: 16,
               mainAxisSpacing: 16,
               shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
               
               children: List.generate(itemList.length,
               (index) => ItemCard(item: itemList[index])),
@@ -196,52 +197,61 @@ class ItemCard extends StatelessWidget {
         })
         );
       },
-      child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                  child: Row(
-                    children: [
-                      Card(
-                      color: Colors.white,
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: Image.asset(item.image,
-                            fit: BoxFit.cover,),
-                          ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                width: 150,
-                                child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                    Text(
-                                      item.name,
-                                      style: const TextStyle(
-                                        fontSize: 12,
-                                        fontFamily: 'Matter',
-                                        fontWeight: FontWeight.w600),
-                                    ),
-                                    const SizedBox(
-                                      height: 5,
-                                    ),
-                                    Text(item.price,
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontFamily: 'Matter',
-                                      fontWeight: FontWeight.w700,
-                                      color: Color(0xFF1235AD)),
+      child: Container(
+        width: 200,
+        constraints: BoxConstraints(maxWidth: 20, maxHeight: 20),
+        child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                    child: Row(
+                      children: [
+                        Card(
+                        color: Colors.white,
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: Image.asset(item.image,
+                              fit: BoxFit.cover,),
+                            ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  width: 150,
+                                  constraints: BoxConstraints(maxWidth: 130),
+                                  child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                      Text(
+                                        item.name,
+                                        style: const TextStyle(
+                                          fontSize: 10,
+                                          fontFamily: 'Matter',
+                                          fontWeight: FontWeight.w600,
+                                          ),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Flexible(
+                                        flex: 2,
+                                        child: Text(item.price,
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          fontFamily: 'Matter',
+                                          fontWeight: FontWeight.w700,
+                                          color: Color(0xFF1235AD)),
+                                          ),
                                       )
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              )
-                        ],
+                                )
+                          ],
+                        ),
                       ),
+                      ],
                     ),
-                    ],
-                  ),
-                  ),
+                    ),
+      ),
     );
   }
 }
