@@ -58,6 +58,7 @@ class _DetailScreenState extends State<DetailScreen> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 'Details',
@@ -67,6 +68,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
+              const SaveButton()  
             ],
           ),
         ),
@@ -239,5 +241,31 @@ class _DetailScreenState extends State<DetailScreen> {
         ),
       ),
     );
+  }
+}
+
+class SaveButton extends StatefulWidget {
+  const SaveButton({Key? key}) : super(key: key);
+
+  @override
+  _SaveButtonState createState() => _SaveButtonState();
+}
+
+class _SaveButtonState extends State<SaveButton>{
+  bool save = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(
+        save? Icons.star_rounded : Icons.star_border_rounded,
+        color: Colors.yellow,
+      ),
+      onPressed: () {
+        setState(() {
+          save = !save; 
+        });
+      }
+      );
   }
 }
